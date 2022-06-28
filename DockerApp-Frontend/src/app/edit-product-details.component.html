@@ -1,0 +1,24 @@
+<h2>{{componentTitle}}</h2>
+<div *ngIf="product">
+    <div><label>id: </label>{{product.id}}</div>
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="product.name" placeholder="product name">
+    </div>
+    <div>
+        <label>Model: </label>
+        <input [(ngModel)]="product.model" placeholder="product model"><br/>
+    </div>
+    <div>
+        <label>Price: </label>
+        <input [(ngModel)]="product.price" placeholder="product price" type="number" step="0.01"><br/>
+    </div>
+    <div>
+        <label>Quantity: </label>
+        <input [(ngModel)]="product.quantity" placeholder="product quantity" type="number">
+    </div>
+    <p></p>
+    <button type="button" (click)="goBack()">Go Back</button>
+    <button (click)="saveProduct()">Save</button>
+    
+</div>

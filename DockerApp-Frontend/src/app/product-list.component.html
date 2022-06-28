@@ -1,0 +1,30 @@
+<div>
+    <h2>{{componentTitle}}</h2>
+    <ul class="products">
+      <!-- <li *ngFor="let product of products" class="col-1-4" [class.selected]="product === selectedProduct" (click)="onSelect(product)"> -->
+      <li *ngFor="let product of products" class="col-1-4" >
+            <span class="badge">{{product.id}}</span>
+        <a routerLink="/products/{{product.id}}">
+            <span class="name">{{product.name}} ({{product.model}})</span>
+        </a>
+        <button class="delete" (click)="deleteProduct(product); $event.stopPropagation()">x</button>
+      </li>
+    </ul>
+  </div>
+  <button (click)="newProduct()">New Product</button>
+  <!-- <div *ngIf="selectedProduct">
+      <div><label>id: </label>{{selectedProduct.id}}</div>
+      <label>Name: </label>
+      <input [(ngModel)]="selectedProduct.name" placeholder="product name"><br/>
+      <label>Model: </label>
+      <input [(ngModel)]="selectedProduct.model" placeholder="product model"><br/>
+      <label>Price: </label>
+      <input [(ngModel)]="selectedProduct.price" placeholder="product price" type="number" step="0.01"><br/>
+      <label>Quantity: </label>
+      <input [(ngModel)]="selectedProduct.quantity" placeholder="product quantity" type="number">
+  </div> -->
+  
+  <!-- <app-edit-product-details [product]="selectedProduct"></app-edit-product-details> -->
+  
+  
+  
