@@ -12,7 +12,7 @@
 	<artifactId>docker_app_backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>DockerApp-Backend</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Docker Application (Backend) using Spring Boot</description>
 	<properties>
 		<java.version>8</java.version>
 	</properties>
