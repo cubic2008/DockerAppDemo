@@ -1,0 +1,35 @@
+FROM davidgao2008/ubuntu-git-maven as build1
+
+#FROM build1 as build2
+#RUN mkdir /home/recipeHunt && \
+#           cd /home/recipeHunt && \
+#           git clone https://github.com/alyssagao1120/recipe-hunt.git
+RUN cd home && \
+    git clone https://github.com/cubic2008/DockerAppDemo.git DockerApp
+#Set working directory
+WORKDIR "/home/DockerApp/DockerApp-Backend (SpringBoots)"
+RUN mvn -Dmaven.test.skip package
+
+FROM ubuntu:latest as runtime
+ENV DEBIAN_FRONTEND=noninteractive 
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk
+ARG src1="/home/DockerApp/DockerApp-Backend (SpringBoots)/target/docker_app_backend-0.0.1-SNAPSHOT.jar"
+ARG target1=/home/docker_app_backend-0.0.1-SNAPSHOT.jar
+ARG src2="/home/DockerApp/DockerApp-Backend (SpringBoots)/src/main/resources/application.properties"
+ARG target2=/home/application.properties
+#ARG src2="/home/recipeHunt/recipe-hunt/environments/tomcat/context.xml"
+#ARG target2=/usr/local/tomcat/conf/
+#ARG src3="/home/recipeHunt/recipe-hunt/environments/tomcat/setenv.sh"
+#ARG target3=/usr/local/tomcat/bin/
+COPY --from=build1 ${src1} ${target1}
+COPY --from=build1 ${src2} ${target2}
+#COPY --from=build2 ${src3} ${target3}
+ENV DOCKERAPP_DB_HOST=dockerapp-db \
+    DOCKERAPP_DB_PORT=3306 \
+    DOCKERAPP_DB_NAME=dockerappdb \
+    DOCKERAPP_DB_USER=appuser \
+    DOCKERAPP_DB_PASSWORD=appPassw0rd \
+    DOCKERAPP_DB_JNDI_NAME=jdbc/dockerappdb
+ENTRYPOINT ["java", "-jar", "/home/docker_app_backend-0.0.1-SNAPSHOT.jar", "--spring.config.location=/home/application.properties"]
+EXPOSE 8080

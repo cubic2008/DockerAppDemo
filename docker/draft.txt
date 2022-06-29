@@ -1,0 +1,42 @@
+sudo docker image build --tag davidgao2008/ubuntu-git-maven -f ubuntu-git-maven.df .
+sudo docker push davidgao2008/ubuntu-git-maven
+
+sudo docker image build --tag dockerapp-tomcat -f tomcat.df .
+
+sudo docker image build --tag dockerapp-db -f mysql.df .
+
+sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=agserver --build-arg apiUrlPort=18080 -f nginx.df .
+
+#sudo docker network create --driver bridge --label project=dockerapp --label module=web_app --attachable --scope local --subnet 127.100.1.0/24 --ip-range 127.100.1.1/25 dockerapp-network
+sudo docker network create --driver bridge --label project=dockerapp --label module=web_app --attachable --scope local --subnet 10.0.1.0/24 --ip-range 10.0.1.128/25 dockerapp-network
+
+#sudo docker run --rm --name dockerapp-db --network dockerapp-network -it dockerapp-db
+#sudo docker run --rm --name dockerapp-db --network dockerapp-network -e MYSQL_USER=appuser -e MYSQL_PASSWORD=appPassw0rd -it dockerapp-db
+#sudo docker run --rm --name dockerapp-db --network dockerapp-network -e MYSQL_USER=appuser -e MYSQL_PASSWORD=appPassw0rd -d dockerapp-db
+sudo docker run --rm --name dockerapp-db --network dockerapp-network -p 3306:3306 -e MYSQL_USER=$DB_USER -e MYSQL_PASSWORD=$DB_PASSWORD -d dockerapp-db
+
+
+sleep 20
+
+#sudo docker run --rm --name dockerapp-tomcat --network dockerapp-network -p 18080:8080 -it dockerapp-tomcat
+#sudo docker run --rm --name dockerapp-tomcat --network dockerapp-network -p 18080:8080 -e RECIPE_HUNT_DB_USER=appuser -e RECIPE_HUNT_DB_PASSWORD=appPassw0rd -it dockerapp-tomcat
+sudo docker run --rm --name dockerapp-tomcat --network dockerapp-network -p 18080:8080 -e RECIPE_HUNT_DB_USER=appuser -e RECIPE_HUNT_DB_PASSWORD=appPassw0rd -d dockerapp-tomcat
+
+sleep 10
+
+#sudo docker run --rm --name dockerapp-nginx --network dockerapp-network -p 19090:80 -it dockerapp-nginx
+sudo docker run --rm --name dockerapp-nginx -p 19090:80 -it dockerapp-nginx
+
+
+
+# MYSQL Console
+sudo docker run -it --network dockerapp-network --rm mysql mysql -hdockerapp-db -uappuser -p
+
+# Logs
+sudo docker logs -f dockerapp-db
+sudo docker logs -f dockerapp-tomcat
+
+# Remove containers
+sudo docker rm -f dockerapp-db
+sudo docker rm -f dockerapp-tomcat
+sudo docker rm -f dockerapp-nginx
