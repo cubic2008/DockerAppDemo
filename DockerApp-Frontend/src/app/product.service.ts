@@ -5,7 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Product, PRODUCTS } from './product';
 import { MessageService } from './message.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
