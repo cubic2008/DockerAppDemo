@@ -78,6 +78,7 @@ public class RootConfig {
 		// environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		properties.put("hibernate.show_sql", false);
 		properties.put("hibernate.format_sql", true);
+		properties.put("hibernate.use-new-id-generator-mappings", false);
 		return properties;
 	}
 
