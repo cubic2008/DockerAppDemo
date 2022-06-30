@@ -9,7 +9,7 @@ ENV API_URL_HOST=${apiUrlHost} \
 # Set the working directory
 WORKDIR /usr/local/app
 RUN git clone https://github.com/cubic2008/DockerAppDemo.git DockerApp
-WORKDIR /usr/local/app/DockerApp/'Frontend (Angular)'
+WORKDIR /usr/local/app/DockerApp/DockerApp-Frontend
 ENV NODE_OPTIONS=--openssl-legacy-provider
 # Add the source code to app
 #COPY ./ /usr/local/app/
