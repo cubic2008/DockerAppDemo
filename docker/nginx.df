@@ -8,14 +8,14 @@ ENV API_URL_HOST=${apiUrlHost} \
     API_URL_PORT=${apiUrlPort}
 # Set the working directory
 WORKDIR /usr/local/app
-RUN git clone https://github.com/alyssagao1120/recipe-hunt.git
-WORKDIR /usr/local/app/recipe-hunt/'Frontend (Angular)'
+RUN git clone https://github.com/cubic2008/DockerAppDemo.git DockerApp
+WORKDIR /usr/local/app/DockerApp/'Frontend (Angular)'
 ENV NODE_OPTIONS=--openssl-legacy-provider
 # Add the source code to app
 #COPY ./ /usr/local/app/
 
-RUN chmod +x /usr/local/app/recipe-hunt/environments/frontend/set_env.sh
-RUN /usr/local/app/recipe-hunt/environments/frontend/set_env.sh
+RUN chmod +x /usr/local/app/DockerApp/environments/frontend/set_env.sh
+RUN /usr/local/app/DockerApp/environments/frontend/set_env.sh
 
 # Install all the dependencies
 RUN npm install
@@ -23,19 +23,19 @@ RUN npm install
 # Generate the build of the application
 RUN npm run build --prod
 # ARG abc="good"
-# ARG src0="/usr/local/app/recipe-hunt/Frontend (Angular)/dist/Recipe-Hunt/abc.txt"
+# ARG src0="/usr/local/app/DockerApp/DockerApp-Frontend/dist/Recipe-Hunt/abc.txt"
 # RUN echo ${abc} > ${src0}
 
-RUN cat /usr/local/app/recipe-hunt/environments/frontend/set_env.sh
-RUN cat /usr/local/app/recipe-hunt/'Frontend (Angular)'/src/environments/environment.ts
+RUN cat /usr/local/app/DockerApp/environments/frontend/set_env.sh
+RUN cat /usr/local/app/DockerApp/DockerApp-Frontend/src/environments/environment.ts
 
 
 # Stage 2: Serve app with nginx server
 
 # Use official nginx image as the base image
 FROM nginx:latest
-ARG src1="/usr/local/app/recipe-hunt/Frontend (Angular)/dist/Recipe-Hunt/"
-ARG src2="/usr/local/app/recipe-hunt/environments/nginx/nginx.conf"
+ARG src1="/usr/local/app/DockerApp/Frontend (Angular)/dist/DockerApp-Frontend/"
+ARG src2="/usr/local/app/DockerApp/environments/nginx/nginx.conf"
 # Copy the build output to replace the default nginx contents.
 COPY --from=build ${src1} /usr/share/nginx/html
 COPY --from=build ${src2} /etc/nginx/nginx.conf

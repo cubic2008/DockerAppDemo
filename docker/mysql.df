@@ -1,6 +1,6 @@
 FROM davidgao2008/ubuntu-git-maven as build1
 
-FROM build1 as build2
+#FROM build1 as build2
 #RUN mkdir /home/recipeHunt && \
 #           cd /home/recipeHunt && \
 #           git clone https://github.com/alyssagao1120/recipe-hunt.git
@@ -14,7 +14,7 @@ RUN cd /home && \
 FROM mysql:latest as runtime
 ARG src1="/home/DockerApp/database/schema.sql"
 ARG target1=/docker-entrypoint-initdb.d
-COPY --from=build2 ${src1} ${target1}
+COPY --from=build1 ${src1} ${target1}
 ENV MYSQL_ROOT_PASSWORD="" \
     MYSQL_DATABASE="dockerappdb" \
     MYSQL_USER="appuser" \
