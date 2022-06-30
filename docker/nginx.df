@@ -34,7 +34,7 @@ RUN cat /usr/local/app/DockerApp/DockerApp-Frontend/src/environments/environment
 
 # Use official nginx image as the base image
 FROM nginx:latest
-ARG src1="/usr/local/app/DockerApp/Frontend (Angular)/dist/DockerApp-Frontend/"
+ARG src1="/usr/local/app/DockerApp/DockerApp-Frontend/dist/DockerApp-Frontend/"
 ARG src2="/usr/local/app/DockerApp/environments/nginx/nginx.conf"
 # Copy the build output to replace the default nginx contents.
 COPY --from=build ${src1} /usr/share/nginx/html
