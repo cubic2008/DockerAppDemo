@@ -8,7 +8,8 @@ export DB_PASSWORD=appPassw0rd
 #sudo docker image build --tag dockerapp-restserver -f sprintboot.df .
 sudo docker image build --tag dockerapp-tomcat -f tomcat.df .
 sudo docker image build --tag dockerapp-db -f mysql.df .
-sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx.df .
+# sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx_springboot.df .
+sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx_tomcat.df .
 
 # Step 2: Create a bridge network
 sudo docker network create --driver bridge --label project=dockerapp --label module=web_app --attachable --scope local --subnet 10.0.1.0/24 --ip-range 10.0.1.1/25 dockerapp-network
