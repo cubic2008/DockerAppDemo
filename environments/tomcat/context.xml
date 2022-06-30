@@ -26,8 +26,8 @@
 
     <Resource name="jdbc/dockerappdb" auth="Container" type="javax.sql.DataSource"
               maxTotal="100" maxIdle="30" maxWaitMillis="10000"
-              username="${Ddockerapp.db.user}" password="${Ddockerapp.db.password}" driverClassName="com.mysql.cj.jdbc.Driver"
-		      url="jdbc:mysql://${Ddockerapp.db.hostname}:${Ddockerapp.db.port}/${Ddockerapp.db.name}"/>
+              username="${dockerapp.db.user}" password="${dockerapp.db.password}" driverClassName="com.mysql.cj.jdbc.Driver"
+		      url="jdbc:mysql://${dockerapp.db.hostname}:${dockerapp.db.port}/${dockerapp.db.name}"/>
 
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
