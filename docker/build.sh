@@ -1,5 +1,5 @@
 # Step 0: (Optional) Setup environment variables
-export HOSTING_SERVER_NAME=appserver # The hostname of the hosting server. It could the VM server name that hosting the containers.
+export HOSTING_SERVER_NAME=192.168.15.135 # The hostname of the hosting server. It could the VM server name that hosting the containers.
 export APP_SERVER_PORT=18080
 export DB_USER=appuser
 export DB_PASSWORD=appPassw0rd
@@ -19,10 +19,10 @@ sudo docker run --rm --name dockerapp-db --network dockerapp-network -e MYSQL_US
 
 # sleep 20
 
-# Step 4a: Create & Run App Server (Tomcat) Container
+# Step 4a: Create & Run App Server (SpringBoot) Container
 sudo docker run --rm --name dockerapp-restserver --network dockerapp-network -p $APP_SERVER_PORT:8080 -e DOCKERAPP_DB_USER=$DB_USER -e DOCKERAPP_DB_PASSWORD=$DB_PASSWORD -d dockerapp-restserver
 
-# Step 4b: Create & Run App Server (Tomcat) Container
+# Step 4b: Create & Run App Server (SpringMVC/Tomcat) Container
 #sudo docker run --rm --name dockerapp-tomcat --network dockerapp-network -p $APP_SERVER_PORT:8080 -e DOCKERAPP_DB_USER=$DB_USER -e DOCKERAPP_DB_PASSWORD=$DB_PASSWORD -d dockerapp-tomcat
 
 # sleep 10

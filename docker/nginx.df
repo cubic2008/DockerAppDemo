@@ -26,8 +26,8 @@ RUN npm run build --prod
 # ARG src0="/usr/local/app/DockerApp/DockerApp-Frontend/dist/Recipe-Hunt/abc.txt"
 # RUN echo ${abc} > ${src0}
 
-RUN cat /usr/local/app/DockerApp/environments/frontend/set_env.sh
-RUN cat /usr/local/app/DockerApp/DockerApp-Frontend/src/environments/environment.ts
+#RUN cat /usr/local/app/DockerApp/environments/frontend/set_env.sh
+#RUN cat /usr/local/app/DockerApp/DockerApp-Frontend/src/environments/environment.ts
 
 
 # Stage 2: Serve app with nginx server
