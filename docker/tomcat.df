@@ -1,17 +1,18 @@
+# This is the dockerfile that is used to create the REST Server
+# for running the DockerApp Backend (SpringMVC/Tomcat)
+
+# Stage 1: Compile and Build the SpringMVC/Tomcat backend application
+
 FROM davidgao2008/ubuntu-git-maven as build1
 
-#FROM build1 as build2
-#RUN mkdir /home/recipeHunt && \
-#           cd /home/recipeHunt && \
-#           git clone https://github.com/alyssagao1120/recipe-hunt.git
 RUN cd home && \
     git clone https://github.com/cubic2008/DockerAppDemo.git DockerApp
-#Set working directory
+# Set working directory
 WORKDIR "/home/DockerApp/DockerApp-Backend (SpringMVC)"
 RUN mvn package
 
 FROM tomcat:9.0.56-jdk8-openjdk-bullseye as runtime
-ARG src1="/home/DockerApp/'DockerApp-Backend (SpringMVC)'/target/docker_app_backend.war"
+ARG src1="/home/DockerApp/DockerApp-Backend (SpringMVC)/target/docker_app_backend.war"
 ARG target1=/usr/local/tomcat/webapps/
 ARG src2="/home/DockerApp/environments/tomcat/context.xml"
 ARG target2=/usr/local/tomcat/conf/
@@ -26,4 +27,4 @@ ENV DOCKERAPP_DB_HOST=dockerapp-db \
     DOCKERAPP_DB_USER=appuser \
     DOCKERAPP_DB_PASSWORD=appPassw0rd \
     DOCKERAPP_DB_JNDI_NAME=jdbc/dockerappdb
-# EXPOSE 8080
+EXPOSE 8080

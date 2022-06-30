@@ -1,36 +1,38 @@
 version: "3.7"
 networks:
-  recipe-hunt-network:
+  dockerapp-network:
     driver: bridge
     labels:
-      project: "recipe_hunt"
+      project: "dockerapp"
       module: "web_app"
     attachable: true
 services:
-  recipe-hunt-nginx:
-    image: "recipe-hunt-nginx"
+  dockerapp-db:
+    image: "dockerapp-db"
+    networks:
+      - dockerapp-network
+    environment:
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: appPassw0rd
+    ports:
+      - "3306:3306"
+    deploy:
+      replicas: 1
+  dockerapp-nginx:
+    image: "dockerapp-nginx"
     ports: 
       - "19090:80"
     deploy:
       replicas: 1
-  recipe-hunt-tomcat:
-    image: "recipe-hunt-tomcat"
+  dockerapp-restserver :
+    image: "dockerapp-springboot"
     networks:
-      - recipe-hunt-network
+      - dockerapp-network
     ports:
       - "18080:8080"
     environment:
-      RECIPE_HUNT_DB_USER: rhuser
-      RECIPE_HUNT_DB_PASSWORD: rhPassw0rd
-    deploy:
-      replicas: 1
-  recipe-hunt-db:
-    image: "recipe-hunt-db"
-    networks:
-      - recipe-hunt-network
-    environment:
-      MYSQL_USER: rhuser
-      MYSQL_PASSWORD: rhPassw0rd
+      DOCKERAPP_DB_USER: appuser
+      DOCKERAPP_DB_PASSWORD: appPassw0rd
     deploy:
       replicas: 1
       

@@ -1,3 +1,6 @@
+# dockerfile for building the base image (git + Maven + Angular)
+# (This dockerfile is not in used for the DockerApp demo)
+
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update 
