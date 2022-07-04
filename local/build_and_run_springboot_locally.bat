@@ -1,22 +1,38 @@
 @echo off
 
-@REM Step 1: Download the required modules/libraries
+@REM Step 1: Setup the environment variables for connecting to the database server
+
+echo.
+echo +--------------------------------------------------------------------+
+echo ^|      Set environment variables for connecting MySQL database       ^|
+echo +--------------------------------------------------------------------+
+echo.
+
+@echo on
+set DOCKERAPP_DB_HOST=localhost
+set DOCKERAPP_DB_PORT=3306
+set DOCKERAPP_DB_USER=appUser
+set DOCKERAPP_DB_PASSWORD=appPassw0rd
+set DOCKERAPP_DB_NAME=dockerappdb
+@echo off
+
+
+@REM Step 2: Build the server using “maven package” command
 
 echo.
 echo.
 echo.
 echo +--------------------------------------------------------------------+
-echo ^|             Download the required modules/libraries               ^|
+echo ^|              Build DockerApp-Backend (SpringBoots)                 ^|
 echo +--------------------------------------------------------------------+
 echo.
 echo.
 echo.
 
 
-@REM Step 2: Start the Frontend Application (in development mode)
+@REM Step 3: Start the SpringBoot application which embedded a Tomcat server.
 
-cd ../DockerApp-Frontend
-npm install
+cd "../DockerApp-Backend (SpringBoots)"
 @REM mvn -Dmaven.test.skip package
 call mvn package
 
@@ -24,10 +40,10 @@ echo.
 echo.
 echo.
 echo +--------------------------------------------------------------------+
-echo ^|        Start the Frontend Application (in development mode)        ^|
+echo ^|       Start DockerApp-Backend (SpringBoots) REST API server        ^|
 echo +--------------------------------------------------------------------+
 echo.
 echo.
 echo.
 
-ng serve
+java -jar target/docker_app_backend-0.0.1-SNAPSHOT.jar
