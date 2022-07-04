@@ -1,29 +1,22 @@
 @echo off
-echo.
-echo +--------------------------------------------------------------------+
-echo ^|      Set environment variables for connecting MySQL database       ^|
-echo +--------------------------------------------------------------------+
-echo.
 
-@echo on
-set DOCKERAPP_DB_HOST=localhost
-set DOCKERAPP_DB_PORT=3306
-set DOCKERAPP_DB_USER=appUser
-set DOCKERAPP_DB_PASSWORD=appPassw0rd
-set DOCKERAPP_DB_NAME=dockerappdb
-@echo off
+@REM Step 1: Download the required modules/libraries
 
 echo.
 echo.
 echo.
 echo +--------------------------------------------------------------------+
-echo ^|              Build DockerApp-Backend (SpringBoots)                 ^|
+echo ^|             Download the required modules/libraries               ^|
 echo +--------------------------------------------------------------------+
 echo.
 echo.
 echo.
 
-cd "../DockerApp-Backend (SpringBoots)"
+
+@REM Step 2: Start the Frontend Application (in development mode)
+
+cd ../DockerApp-Frontend
+npm install
 @REM mvn -Dmaven.test.skip package
 call mvn package
 
@@ -31,10 +24,10 @@ echo.
 echo.
 echo.
 echo +--------------------------------------------------------------------+
-echo ^|       Start DockerApp-Backend (SpringBoots) REST API server        ^|
+echo ^|        Start the Frontend Application (in development mode)        ^|
 echo +--------------------------------------------------------------------+
 echo.
 echo.
 echo.
 
-java -jar target/docker_app_backend-0.0.1-SNAPSHOT.jar
+ng serve
