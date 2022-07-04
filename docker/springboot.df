@@ -9,7 +9,13 @@ RUN cd home && \
     git clone https://github.com/cubic2008/DockerAppDemo.git DockerApp
 # Set working directory
 WORKDIR "/home/DockerApp/DockerApp-Backend (SpringBoots)"
-RUN mvn -Dmaven.test.skip package
+RUN set DOCKERAPP_DB_HOST=localhost && \
+    set DOCKERAPP_DB_PORT=3306 && \
+    set DOCKERAPP_DB_USER=appUser && \
+    set DOCKERAPP_DB_PASSWORD=appPassw0rd && \
+    set DOCKERAPP_DB_NAME=dockerappdb && \
+    mvn -Dmaven.test.skip package
+#RUN mvn -Dmaven.test.skip package
 
 FROM ubuntu:latest as runtime
 ENV DEBIAN_FRONTEND=noninteractive 

@@ -1,12 +1,8 @@
 @echo off
 echo.
-echo.
-echo.
 echo +--------------------------------------------------------------------+
 echo ^|      Set environment variables for connecting MySQL database       ^|
 echo +--------------------------------------------------------------------+
-echo.
-echo.
 echo.
 
 set DOCKERAPP_DB_HOST=localhost
