@@ -6,7 +6,7 @@ echo.
 echo.
 echo.
 echo +--------------------------------------------------------------------+
-echo ^|             Download the required modules/libraries               ^|
+echo ^|              Download the required modules/libraries               ^|
 echo +--------------------------------------------------------------------+
 echo.
 echo.
@@ -16,9 +16,7 @@ echo.
 @REM Step 2: Start the Frontend Application (in development mode)
 
 cd ../DockerApp-Frontend
-npm install
-@REM mvn -Dmaven.test.skip package
-call mvn package
+call npm install
 
 echo.
 echo.
@@ -30,4 +28,4 @@ echo.
 echo.
 echo.
 
-ng serve
+start ng serve

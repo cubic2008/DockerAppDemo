@@ -46,4 +46,4 @@ echo.
 echo.
 echo.
 
-java -jar target/docker_app_backend-0.0.1-SNAPSHOT.jar
+start java -jar target/docker_app_backend-0.0.1-SNAPSHOT.jar
