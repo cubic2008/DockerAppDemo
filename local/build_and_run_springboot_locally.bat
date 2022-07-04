@@ -5,11 +5,13 @@ echo ^|      Set environment variables for connecting MySQL database       ^|
 echo +--------------------------------------------------------------------+
 echo.
 
+@echo on
 set DOCKERAPP_DB_HOST=localhost
 set DOCKERAPP_DB_PORT=3306
 set DOCKERAPP_DB_USER=appUser
 set DOCKERAPP_DB_PASSWORD=appPassw0rd
 set DOCKERAPP_DB_NAME=dockerappdb
+@echo off
 
 echo.
 echo.
