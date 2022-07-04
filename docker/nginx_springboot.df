@@ -2,6 +2,7 @@
 # for running the DockerApp Frontend App (Angular) to connect the 
 # SpringBoot backend REST Server
 
+
 # Stage 1: Compile and Build angular codebase
 
 # Use official node image as the base image
@@ -25,6 +26,7 @@ RUN npm install
 
 # Generate the build of the application
 RUN npm run build --prod
+
 
 # Stage 2: Serve app with nginx server
 

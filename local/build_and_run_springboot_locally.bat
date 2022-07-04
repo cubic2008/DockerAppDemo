@@ -29,12 +29,12 @@ echo.
 echo.
 echo.
 
-
-@REM Step 3: Start the SpringBoot application which embedded a Tomcat server.
-
 cd "../DockerApp-Backend (SpringBoots)"
 @REM mvn -Dmaven.test.skip package
 call mvn package
+
+
+@REM Step 3: Start the SpringBoot application which embedded a Tomcat server.
 
 echo.
 echo.
@@ -47,3 +47,4 @@ echo.
 echo.
 
 start java -jar target/docker_app_backend-0.0.1-SNAPSHOT.jar
+cd ../local
