@@ -20,19 +20,19 @@ export DB_PASSWORD=appPassw0rd
 
 # Step 1: Create images
 echo "+--------------------------------------------------------------------+"
-echo "| Step 1.1: Create images (dockerapp-springboot using springboot.df) |"
+echo "| Step 1.1: Create images (dockerapp-springboot using springboot.dockerfile) |"
 echo "+--------------------------------------------------------------------+"
-sudo docker image build --tag dockerapp-springboot -f sprintboot.df .
+sudo docker image build --tag dockerapp-springboot -f sprintboot.dockerfile .
 #sudo docker image build --tag dockerapp-tomcat -f tomcat.df .
 echo "+-------------------------------------------------------+"
-echo "| Step 1.2: Create images (dockerapp-db using mysql.df) |"
+echo "| Step 1.2: Create images (dockerapp-db using mysql.dockerfile) |"
 echo "+-------------------------------------------------------+"
-sudo docker image build --tag dockerapp-db -f mysql.df .
+sudo docker image build --tag dockerapp-db -f mysql.dockerfile .
 echo "+---------------------------------------------------------------------+"
-echo "| Step 1.3: Create images (dockerapp-nginx using nginx_springboot.df) |"
+echo "| Step 1.3: Create images (dockerapp-nginx using nginx_springboot.dockerfile) |"
 echo "+---------------------------------------------------------------------+"
-sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx_springboot.df .
-# sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx_tomcat.df .
+sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx_springboot.dockerfile .
+# sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx_tomcat.dockerfile .
 
 # Step 2: Create a bridge network
 echo "+---------------------------------+"

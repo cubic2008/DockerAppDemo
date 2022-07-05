@@ -9,7 +9,19 @@ RUN cd home && \
     git clone https://github.com/cubic2008/DockerAppDemo.git DockerApp
 # Set working directory
 WORKDIR "/home/DockerApp/DockerApp-Backend (SpringMVC)"
-RUN mvn package
+
+# The environment variables for connecting to the database server that are required 
+# when the maven build runs the test cases. In order to run the test cases during
+# the build, the database server container needs to be up running.
+#RUN set DOCKERAPP_DB_HOST=localhost && \
+#    set DOCKERAPP_DB_PORT=3306 && \
+#    set DOCKERAPP_DB_USER=appUser && \
+#    set DOCKERAPP_DB_PASSWORD=appPassw0rd && \
+#    set DOCKERAPP_DB_NAME=dockerappdb && \
+#    mvn package
+RUN mvn -Dmaven.test.skip package
+
+# Stage 2: Prepare the target image
 
 FROM tomcat:9.0.56-jdk8-openjdk-bullseye as runtime
 ARG src1="/home/DockerApp/DockerApp-Backend (SpringMVC)/target/docker_app_backend.war"

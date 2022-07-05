@@ -1,1 +1,1 @@
-export JAVA_OPTS="$JAVA_OPTS -Ddockerapp.db.hostname=$DOCKERAPP_DB_HOST -Ddockerapp.db.port=$DOCKERAPP_DB_PORT -Ddockerapp.db.name=$DOCKERAPP_DB_NAME -Ddockerapp.db.user=$DOCKERAPP_DB_USER -Ddockerapp.db.password=$DOCKERAPP_DB_PASSWORD"
+export JAVA_OPTS="$JAVA_OPTS -Ddockerapp.db.hostname=$DOCKERAPP_DB_HOST -Ddockerapp.db.port=$DOCKERAPP_DB_PORT -Ddockerapp.db.name=$DOCKERAPP_DB_NAME -Ddockerapp.db.user=$DOCKERAPP_DB_USER -Ddockerapp.db.password=$DOCKERAPP_DB_PASSWORD -Ddockerapp.jndi.name=$DOCKERAPP_DB_JNDI_NAME"
