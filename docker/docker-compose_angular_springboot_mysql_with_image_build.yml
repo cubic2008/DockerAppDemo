@@ -26,6 +26,9 @@ services:
     build:
       context: .
       dockerfile: nginx_springboot.dockerfile
+      args:
+        apiUrlHost: ${HOSTING_SERVER_NAME}
+        apiUrlPort: ${APP_SERVER_PORT}
     ports: 
       - "19090:80"
     deploy:
