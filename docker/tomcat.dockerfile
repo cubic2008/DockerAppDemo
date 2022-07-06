@@ -12,13 +12,18 @@ WORKDIR "/home/DockerApp/DockerApp-Backend (SpringMVC)"
 
 # The environment variables for connecting to the database server that are required 
 # when the maven build runs the test cases. In order to run the test cases during
-# the build, the database server container needs to be up running.
-#RUN set DOCKERAPP_DB_HOST=localhost && \
-#    set DOCKERAPP_DB_PORT=3306 && \
-#    set DOCKERAPP_DB_USER=appUser && \
-#    set DOCKERAPP_DB_PASSWORD=appPassw0rd && \
-#    set DOCKERAPP_DB_NAME=dockerappdb && \
-#    mvn package
+# the build, the database server container needs to be up running. You also need to 
+# specify the "--network dockerapp-network" option in the "docker image build" command.
+# Also dont forget to set the following two environment variables on the hosting VM 
+# before running the msyql database server container:
+#     export DB_USER=appuser
+#     export DB_PASSWORD=appPassw0rd
+#ENV DOCKERAPP_DB_HOST=dockerapp-db \
+#    DOCKERAPP_DB_PORT=3306 \
+#    DOCKERAPP_DB_NAME=dockerappdb \
+#    DOCKERAPP_DB_USER=appuser \
+#    DOCKERAPP_DB_PASSWORD=appPassw0rd
+#RUN mvn package
 RUN mvn -Dmaven.test.skip package
 
 # Stage 2: Prepare the target image

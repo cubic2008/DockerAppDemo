@@ -9,28 +9,28 @@
 # Then it creates and runs the three docker containers respectively and one bridge network.
 
 
-# Step 0: (Optional) Setup environment variables
-echo "+------------------------------------------------+"
-echo "| Step 0: (Optional) Setup environment variables |"
-echo "+------------------------------------------------+"
+# Step 0: Setup environment variables
+echo "+-------------------------------------+"
+echo "| Step 0: Setup environment variables |"
+echo "+-------------------------------------+"
 export HOSTING_SERVER_NAME=192.168.15.135 # The hostname of the hosting server. It could the VM server name that hosting the containers.
 export APP_SERVER_PORT=18080
 export DB_USER=appuser
 export DB_PASSWORD=appPassw0rd
 
 # Step 1: Create images
-echo "+--------------------------------------------------------------------+"
+echo "+----------------------------------------------------------------------------+"
 echo "| Step 1.1: Create images (dockerapp-springboot using springboot.dockerfile) |"
-echo "+--------------------------------------------------------------------+"
-sudo docker image build --tag dockerapp-springboot -f sprintboot.dockerfile .
+echo "+----------------------------------------------------------------------------+"
+sudo docker image build --tag dockerapp-springboot -f springboot.dockerfile .
 #sudo docker image build --tag dockerapp-tomcat -f tomcat.df .
-echo "+-------------------------------------------------------+"
+echo "+---------------------------------------------------------------+"
 echo "| Step 1.2: Create images (dockerapp-db using mysql.dockerfile) |"
-echo "+-------------------------------------------------------+"
+echo "+-------------------------------------------------------00000000+"
 sudo docker image build --tag dockerapp-db -f mysql.dockerfile .
-echo "+---------------------------------------------------------------------+"
+echo "+-----------------------------------------------------------------------------+"
 echo "| Step 1.3: Create images (dockerapp-nginx using nginx_springboot.dockerfile) |"
-echo "+---------------------------------------------------------------------+"
+echo "+-----------------------------------------------------------------------------+"
 sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx_springboot.dockerfile .
 # sudo docker image build --tag dockerapp-nginx --build-arg apiUrlHost=$HOSTING_SERVER_NAME --build-arg apiUrlPort=$APP_SERVER_PORT -f nginx_tomcat.dockerfile .
 
@@ -65,3 +65,4 @@ echo "+---------------------------------------------------+"
 echo "| Step 5: Create & Run Web Server (Nginx) Container |"
 echo "+---------------------------------------------------+"
 sudo docker run --rm --name dockerapp-nginx -p 19090:80 -d dockerapp-nginx
+

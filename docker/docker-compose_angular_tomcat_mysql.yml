@@ -33,6 +33,9 @@ services:
     environment:
       DOCKERAPP_DB_USER: appuser
       DOCKERAPP_DB_PASSWORD: appPassw0rd
+    depends_on:
+      - dockerapp-db
+    restart: on-failure
     deploy:
       replicas: 1
       

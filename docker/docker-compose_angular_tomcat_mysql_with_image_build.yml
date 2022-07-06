@@ -8,7 +8,10 @@ networks:
     attachable: true
 services:
   dockerapp-db:
-    image: "dockerapp-db"
+    # image: "dockerapp-db"
+    build:
+      context: .
+      dockerfile: mysql.dockerfile
     networks:
       - dockerapp-network
     environment:
@@ -19,13 +22,19 @@ services:
     deploy:
       replicas: 1
   dockerapp-nginx:
-    image: "dockerapp-nginx"
+    # image: "dockerapp-nginx"
+    build:
+      context: .
+      dockerfile: nginx_tomcat.dockerfile
     ports: 
       - "19090:80"
     deploy:
       replicas: 1
   dockerapp-restserver :
-    image: "dockerapp-springboot"
+    # image: "dockerapp-tomcat"
+    build:
+      context: .
+      dockerfile: tomcat.dockerfile
     networks:
       - dockerapp-network
     ports:
