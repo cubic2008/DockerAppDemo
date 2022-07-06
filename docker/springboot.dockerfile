@@ -16,8 +16,8 @@ WORKDIR "/home/DockerApp/DockerApp-Backend (SpringBoots)"
 # specify the "--network dockerapp-network" option in the "docker image build" command.
 # Also dont forget to set the following two environment variables on the hosting VM 
 # before running the msyql database server container:
-#     export DB_USER=appuser
-#     export DB_PASSWORD=appPassw0rd
+# *    export DB_USER=appuser
+# *    export DB_PASSWORD=appPassw0rd
 #ENV DOCKERAPP_DB_HOST=dockerapp-db \
 #    DOCKERAPP_DB_PORT=3306 \
 #    DOCKERAPP_DB_NAME=dockerappdb \

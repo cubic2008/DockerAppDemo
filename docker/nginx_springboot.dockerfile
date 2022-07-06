@@ -17,7 +17,7 @@ RUN git clone https://github.com/cubic2008/DockerAppDemo.git DockerApp
 WORKDIR /usr/local/app/DockerApp/DockerApp-Frontend
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
-# Create the environment.ts before the build
+# Create the environment.prod.ts before the build
 RUN chmod +x /usr/local/app/DockerApp/environments/frontend/set_env_springboot.sh
 RUN /usr/local/app/DockerApp/environments/frontend/set_env_springboot.sh
 
