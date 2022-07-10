@@ -19,8 +19,7 @@ The following diagrams illustrate the two environments.
 
 ![Environment 1: Angular-SpringBoot-MySQL](git-resources/overview-1.png)
 <figcaption align = "center"><b>Figure.1 - Angular-SpringBoot-MySQL Environment</b></figcaption>
-
-
+<br/>
 ![Environment 2: Angular-SpringMVC/Tomcat-MySQL](git-resources/overview-2.png)
 <figcaption align = "center"><b>Figure.2 - Angular-SpringMVC/Tomcat-MySQL Environment</b></figcaption>
 
@@ -112,6 +111,7 @@ Step 4: Now you can verify the database setup using the commands shown below.
 
 ![Local Database SEtup](git-resources/local-db-setup.png)
 <figcaption align = "center"><b>Figure.6 - Verify local MySQL database setup</b></figcaption>
+
 
 Please note that the password specified in the local setup script is **“appPassw0rd”**. Feel free to change it as you wish.
 
