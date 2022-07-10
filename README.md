@@ -336,7 +336,7 @@ The diagram below illustrates the docker images that will be used or created in 
 
 ![Docker Images](git-resources/docker-images.png)
 <figcaption align = "center"><b>Figure.11 - Docker Images</b></figcaption>
-  *** <CourseDockerID> will be provided in the class
+  *** &lt;CourseDockerID&gt; will be provided in the class
 
 We will assume the hosting machine runs a Windows 10 OS, with an Ubuntu VM running on it (we call it hosting VM). 
 Our docker containers will be deployed on this hosting VM.
@@ -348,13 +348,13 @@ We will need a docker container for building applications:
 * Need Maven for building backend applications
 * Need Node.js for building the frontend application
 So we choose the following two images to meet these needs:
-* **<CourseDockerID>/ubuntu-git-maven**: this image will be used as the base image for backend applications 
-* (both Git and Maven) and the database (Git). We will build this image ourselves.
+* **&lt;CourseDockerID&gt;/ubuntu-git-maven**: this image will be used as the base image for backend applications (both Git 
+and Maven) and the database (Git). We will build this image ourselves.
 * **node:latest**: this image will be used as the base image for building the frontend application (npm and ng)
 
-#### The base image - <CourseDockerID>/ubuntu-git-maven
+### The base image - &lt;CourseDockerID&gt;/ubuntu-git-maven
 
-The base image, **<CourseDockerID>/ubuntu-git-maven**, is built on the official “**ubuntu:latest**” image, with 
+The base image, **&lt;CourseDockerID&gt;/ubuntu-git-maven**, is built on the official “**ubuntu:latest**” image, with 
 adding **git** and **maven**.
 
 Below is the dockerfile, **docker/ubuntu-git-maven.dockerfile**, for building this image. 
@@ -382,7 +382,7 @@ docker image push <CourseDockerID>/ubuntu-git-maven
 
 The dockerfile (**docker/mysql.dockerfile**) is used for creating the MySQL database server. It consists of two steps:
 
-Step 1: Use “**<CourseDockerID>/ubuntu-git-maven**” as the base image, and download the application from GitHub as 
+Step 1: Use “**&lt;CourseDockerID&gt;/ubuntu-git-maven**” as the base image, and download the application from GitHub as 
 “**build1**” image
 * Run “**git clone**” command to download the application to **/home/DockerApp**
 
@@ -436,7 +436,7 @@ docker image build --tag dockerapp-db -f mysql.dockerfile .
 The dockerfile (**docker/springboot.dockerfile**) is used for creating the Backend REST server (SpringBoot version). 
 It consists of two steps:
 
-Step 1: Use “**<CourseDockerID>/ubuntu-git-maven**” as the base image, and download the application from GitHub and 
+Step 1: Use “**&lt;CourseDockerID&gt;/ubuntu-git-maven**” as the base image, and download the application from GitHub and 
 build the executable package using Maven as “**build1**” image
 * Run “**git clone**” command to download the application to **/home/DockerApp**
 * Set the environment variables for connecting the database server that are used by the maven build to run test cases. 
@@ -553,7 +553,7 @@ sudo docker image build --tag dockerapp-springboot -f sprintboot.dockerfile .
 The dockerfile (**docker/tomcat.dockerfile**) is used for creating the Backend REST server (SpringMVC/Tomcat version). 
 It consists of two steps:
 
-Step 1: Use “**<CourseDockerID>/ubuntu-git-maven**” as the base image, and download the application from GitHub and 
+Step 1: Use “**&lt;CourseDockerID&gt;/ubuntu-git-maven**” as the base image, and download the application from GitHub and 
 build the deployable package using Maven as “**build1**” image. This step is the same as in the Backend REST Server 
 (SpringBoot) image build process (**springboot.dockerfile**)
 * Run “**git clone**” command to download the application to /home/DockerApp
@@ -595,8 +595,8 @@ In order to make the database connection information configurable and pass to th
 taken:
 * The database connection information is specified via the docker OS environment variable. This is done using **ENV** 
 commands in the dockerfile.
-* Then they are passed to Tomcat as the JVM properties. This is done using the <TOMCAT_HOME>/bin/**setenv.sh**.
-* The JNDI entry configured in the <TOMCAT_HOME>/conf/**context.xml** refernces these JVM properties.
+* Then they are passed to Tomcat as the JVM properties. This is done using the &lt;TOMCAT_HOME&gt;/bin/**setenv.sh**.
+* The JNDI entry configured in the &lt;TOMCAT_HOME&gt;/conf/**context.xml** refernces these JVM properties.
 * SpringMVC application accesses the database using JNDI entry.
 
 The **context.xml** and **setenv.sh** files are provided under the environments/tomcat folder in the GitHub repository.
@@ -897,8 +897,8 @@ docker run --rm --name dockerapp-nginx -p 19090:80 -d dockerapp-nginx
 
 In the above command, we expose the docker container port **80** to the port **19090** on hosting VM, so we can access 
 the application using the **http://localhost:19090** on the hosting VM and **<u>http://<hosting-ip-address>:19090</u>** 
-on the hosting OS (please note that the VM runs on the hosting OS, docker containers run on the hosting VM, 
-<hosting-ip-address> is the IP address of the VM on the hosting OS’ network).
+on the hosting OS (please note that the VM runs on the hosting OS, docker containers run on the hosting VM,
+&lt;hosting-ip-address&gt; is the IP address of the VM on the hosting OS’ network).
 
 ## Docker Compose
 
