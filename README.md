@@ -345,7 +345,7 @@ The diagram below illustrates the docker images that will be used or created in 
 ![Docker Images](git-resources/docker-images.png)
 <figcaption align = "center"><b>Figure.11 - Docker Images</b></figcaption>
 
-  *** &lt;CourseDockerID&gt; will be provided in the class
+  <em>&lt;CourseDockerID&gt; will be provided in the class</em>
 
 We will assume the hosting machine runs a Windows 10 OS, with an Ubuntu VM running on it (we call it hosting VM). 
 Our docker containers will be deployed on this hosting VM.
