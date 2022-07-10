@@ -442,6 +442,8 @@ ENV MYSQL_ROOT_PASSWORD="" \
 
 <figcaption align = "center"><b>Script.6 - mysql.dockerfile</b></figcaption>
 
+&nbsp;
+
 The following command will create the image named “**dockerapp-db**”, which is the step 1.2 of the build scripts 
 “**docker/build_angular_springboot_mysql.sh**” and “**docker/build_angular_tomcat_mysql.sh**”.
 
@@ -563,6 +565,8 @@ EXPOSE 8080
 
 <figcaption align = "center"><b>Script.8 - springboot.dockerfile</b></figcaption>
 
+&nbsp;
+
 The following command will create the image named “**dockerapp-springboot**”, which is the step 1.1 of the 
 “**docker/build_angular_springboot_mysql.sh**” script.
 
@@ -631,6 +635,8 @@ Please see the next slide that illustrate how database connectivity information 
 ![Environment Parameters and Configuration for SpringMVC backend application running on Tomcat server](git-resources/springmvc-tomcat-env-setup.png)
 <figcaption align = "center"><b>Figure.12 - Environment Parameters and Configuration for SpringMVC backend application running on Tomcat server</b></figcaption>
 
+&nbsp;
+
 ```dockerfile
 # This is the dockerfile that is used to create the REST Server
 # for running the DockerApp Backend (SpringMVC/Tomcat)
@@ -682,6 +688,8 @@ EXPOSE 8080
 ```
 
 <figcaption align = "center"><b>Script.9 - tomcat.dockerfile</b></figcaption>
+
+&nbsp;
 
 The following command will create the image named “**dockerapp-tomcat**”, which is the step 1.1 of the 
 “**docker/build_angular_tomcat_mysql.sh**” script.
@@ -965,6 +973,8 @@ The following screenshot shows the result.
 ![Run "docker compose up" for the docker-compose files without image building](git-resources/docker-compose-up-no-image-build.png)
 <figcaption align = "center"><b>Figure.13 - Run "docker compose up" for the docker-compose files without image building</b></figcaption>
 
+&nbsp;
+
 The following are the two docker compose files for both Springboot and SpringMVC/Tomcat versions. It specifies the 
 image names that expects the images need to be built prior to the docker compose command runs.
 
@@ -1012,6 +1022,8 @@ services:
 ```
 
 <figcaption align = "center"><b>Script.13 - docker-compose_angular_springboot_mysql.yml</b></figcaption>
+
+&nbsp;
 
 ```dockerfile
 version: "3.7"
@@ -1076,6 +1088,8 @@ The following screenshot shows the result.
 ![Run "docker compose up" for the docker-compose files with image building](git-resources/docker-compose-up-with-image-build.png)
 <figcaption align = "center"><b>Figure.14 - Run "docker compose up" for the docker-compose files with image building</b></figcaption>
 
+&nbsp;
+
 The following are the docker compose files for both SpringBoot and SpringMVC/Tomcat versions. It specifies the 
 dockerfiles. It will build the images as part of the docker compose up command.
 
@@ -1136,6 +1150,8 @@ services:
 
 <figcaption align = "center"><b>Script.15 - docker-compose_angular_springboot_mysql_with_image_build.yml</b></figcaption>
 
+&nbsp;
+
 ```dockerfile
 version: "3.7"
 networks:
@@ -1192,6 +1208,8 @@ services:
 ```
 
 <figcaption align = "center"><b>Script.16 - docker-compose_angular_tomcat_mysql_with_image_build.yml</b></figcaption>
+
+&nbsp;
 
 It specifies the two build-args to take the value from two environment variables. The environment variables are stored 
 in the **env.txt**, and is passed to the docker compose command through the **--env-files** option.
