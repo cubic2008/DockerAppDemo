@@ -114,6 +114,8 @@ Step 4: Now you can verify the database setup using the commands shown below.
 ![Local Database SEtup](git-resources/local-db-setup.png)
 <figcaption align = "center"><b>Figure.6 - Verify local MySQL database setup</b></figcaption>
 
+&nbsp;
+
 Please note that the password specified in the local setup script is **“appPassw0rd”**. Feel free to change it as you wish.
 
 The scripts for setting up MySQL database are shown below.
@@ -155,6 +157,8 @@ call mvn package
 java -jar target/docker_app_backend-0.0.1-SNAPSHOT.jar
 ```
 <figcaption align = "center"><b>Script.1 - build_and_run_springboot_locally.bat</b></figcaption>
+
+&nbsp;
 
 After the backend REST API server starts, you can verify using Postman with the following REST operation:
 
@@ -206,6 +210,8 @@ start ng serve
 cd ../local
 ```
 <figcaption align = "center"><b>Script.2 - run_frontend_app.bat</b></figcaption>
+
+&nbsp;
 
 After the Frontend application starts, you can verify by addressing the following URL via the browser. 
 
@@ -298,6 +304,8 @@ call mvn package tomcat7:deploy
 cd ../local
 ```
 <figcaption align = "center"><b>Script.3 - build_and_run_springmvc_tomcat_locally.bat</b></figcaption>
+
+&nbsp;
 
 After the backend REST API server starts, you can verify using Postman with the following REST operation:
 
@@ -721,6 +729,8 @@ echo "export const environment = {
 ```
 
 <figcaption align = "center"><b>Script.10 - set_env_springboot.sh</b></figcaption>
+
+&nbsp;
 
 * Install required modules/dependencies using “**npm install**” command.
 * Generate the production build of the frontend application using “**npm run build --prod**” command.
@@ -1306,3 +1316,5 @@ docker compose --env-file env.txt -f $composeFile $3 &
 ```
 
 <figcaption align = "center"><b>Script.18 - dockerapp-compose.sh</b></figcaption>
+
+&nbsp;
